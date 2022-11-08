@@ -1,25 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import { Canvas } from "@react-three/fiber";
+// import { OrbitControls } from "@react-three/drei";
+import World from "./components/models/World";
+import "./assets/styles/app.css";
+import Grow from "./components/world/grow";
+import Robot from "./components/models/Robot";
+import Camera from "./components/threeBasics/Camera";
 
 function App() {
+  const [test, setTest] = useState(0);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Canvas className="canvas">
+        <Camera />
+        <Robot move={test} />
+        <ambientLight position={[100, 100, 20]} />
+        <World />
+        <Grow />
+        {/* <OrbitControls /> */}
+      </Canvas>
+      <button
+        style={{ position: "absolute", top: 0, left: 0 }}
+        onClick={() => {
+          setTest((prevState) => prevState + 0.01);
+        }}
+      >
+        Click me
+      </button>
+    </>
   );
 }
 
