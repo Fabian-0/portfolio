@@ -6,6 +6,7 @@ export function useCamera() {
 
   function cameraRef(el: PerspectiveCamera | null) {
     if (!el || camera !== null) return;
+    console.log('testState');
     setCamera(el);
   }
 
@@ -14,8 +15,6 @@ export function useCamera() {
 
     camera.rotation.x = (Math.PI * -35) / 180;
   }, [camera]);
-
-  console.log("renders");
 
   return cameraRef;
 }

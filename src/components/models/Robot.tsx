@@ -1,32 +1,22 @@
+import React from "react";
 import { useGLTF } from "@react-three/drei";
-import React, { useEffect, useRef } from "react";
-import { Group, SkinnedMesh } from "three";
+import { SkinnedMesh } from "three";
 import { GLTFResult } from "../../types";
+import useRobot from "../hooks/useRobot";
 
-export interface IAppProps {
-  move: number;
-}
-
-export default function Robot({ move }: IAppProps) {
-  const robot = useRef<Group>(null!);
+export default function Robot() {
   const { nodes, materials } = useGLTF(
     "./models/robot.glb"
   ) as unknown as GLTFResult<SkinnedMesh>;
-
-  useEffect(()=>{
-    if(!robot.current) return;
-    robot.current.rotation.x -= move;
-    console.log(robot.current);
-    
-  }, [robot, move])
+  const { robot } = useRobot()
 
   return (
-    <group position={[0,0,12]}>
+    <group ref={robot} dispose={null} position={[0, 0, 12]}>
       <group name="Scene">
         <group name="move" position={[0, 0, -1]} rotation={[0.02, 0, 0]}>
           <group name="Bone_2">
             <group name="Esqueleto">
-              <primitive ref={robot} dispose={null} object={nodes.Bone} />
+              <primitive object={nodes.Bone} />
               <skinnedMesh
                 name="Mesh_1004"
                 geometry={nodes.Mesh_1004.geometry}
