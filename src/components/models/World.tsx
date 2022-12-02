@@ -1,19 +1,21 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { useAnimations, useGLTF } from "@react-three/drei";
 import { Group, Mesh } from "three";
 import { GLTFResult } from "../../types";
 
 export default function World() {
-
   const group = useRef<Group>(null!);
   const { nodes, materials, animations } = useGLTF(
     "./models/portfolio.glb"
   ) as unknown as GLTFResult<Mesh>;
   const { actions } = useAnimations(animations, group);
 
-  const actionNames = Object.keys(actions);
-  actions[actionNames[0]]?.play();
-  actions[actionNames[1]]?.play();
+  useEffect(() => {
+    const actionNames = Object.keys(actions);
+
+    actions[actionNames[0]]?.play();
+    actions[actionNames[1]]?.play();
+  }, [actions]);
 
   return (
     <group ref={group} dispose={null}>
@@ -330,6 +332,4 @@ export default function World() {
   );
 }
 
-useGLTF.preload(
-  "./models/portfolio.glb"
-)
+useGLTF.preload("./models/portfolio.glb");

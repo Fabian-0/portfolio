@@ -3,7 +3,7 @@ import {
   EActionsInterface,
   EControlsActionTypes,
   EControlsAplyTo,
-} from "./interfacesAndEnums";
+} from "../hooks/useControls/interfacesAndEnums";
 
 export const InitialControlsState: ControlsInterface = {
   KeyW: {
@@ -53,6 +53,7 @@ export const InitialControlsState: ControlsInterface = {
         sign: 1,
         aplyTo: EControlsAplyTo.ROBOT,
         aplyIn: EControlsActionTypes.LOCAL,
+        velocity: 0.01,
       },
     ],
   },
@@ -65,6 +66,7 @@ export const InitialControlsState: ControlsInterface = {
         sign: -1,
         aplyTo: EControlsAplyTo.ROBOT,
         aplyIn: EControlsActionTypes.LOCAL,
+        velocity: 0.01,
       },
     ],
   },

@@ -1,33 +1,53 @@
-import React from "react";
+import React, {
+  createContext,
+  Dispatch,
+  SetStateAction,
+  useState,
+} from "react";
 import { Canvas } from "@react-three/fiber";
-// import { OrbitControls } from "@react-three/drei";
-import World from "./components/models/World";
 import "./assets/styles/app.css";
-import Grow from "./components/world/grow";
-import Robot from "./components/models/Robot";
-import Camera from "./components/threeBasics/Camera";
+import Grow from "./components/world/Grow";
+import CollitionsHandler from "./components/CollitionsHandler";
+import { Portfolio } from "./components/cards/Portfolio";
+import { Box3Helper } from "three";
+
+interface IBoxesState {
+  boxes: Box3Helper[];
+  isCardVisible: boolean;
+  cardName: string | null;
+}
+
+interface IBoxesCtxState {
+  setCtx: Dispatch<SetStateAction<IBoxesState>>;
+  ctx: IBoxesState;
+}
+const BoxesCtxState = {
+  boxes: [],
+  isCardVisible: false,
+  cardName: null,
+};
+
+export const BoxesContext = createContext<IBoxesCtxState>({
+  setCtx: null!,
+  ctx: BoxesCtxState,
+});
+
+const proyects = { portfolio: Portfolio } as any;
 
 function App() {
+  const [ctx, setCtx] = useState<IBoxesState>(BoxesCtxState);
+  const Component = proyects[ctx.cardName || ""];
 
   return (
-    <>
+    <BoxesContext.Provider value={{ setCtx, ctx }}>
       <Canvas className="canvas">
-        <Camera />
-        <Robot />
         <ambientLight position={[100, 100, 20]} />
-        <World />
         <Grow />
-        {/* <OrbitControls /> */}
+        <CollitionsHandler />
       </Canvas>
-      {/* <button
-        style={{ position: "absolute", top: 0, left: 0 }}
-        onClick={() => {
-          setTest((prevState) => prevState + 0.01);
-        }}
-      >
-        Click me
-      </button> */}
-    </>
+
+      {ctx.isCardVisible && Component && <Component />}
+    </BoxesContext.Provider>
   );
 }
 

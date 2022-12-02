@@ -23,6 +23,7 @@ export interface ActionInterface {
   sign: 1 | -1;
   aplyTo: EControlsAplyTo;
   aplyIn: EControlsActionTypes;
+  velocity?: number;
 }
 
 export interface ControlsInterface {

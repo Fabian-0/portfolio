@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { InitialControlsState } from "./helperState";
+import { InitialControlsState } from "../../constants/controlsHookState";
 import { ControlsInterface } from "./interfacesAndEnums";
 
 // export interface IAppProps {
@@ -8,8 +8,11 @@ import { ControlsInterface } from "./interfacesAndEnums";
 export default function useControls(/* props: IAppProps */): {
   controls: ControlsInterface;
   keys: string[];
+  aceleration: number;
+  incrementAceleration: () => void;
 } {
   const [controls, setControls] = useState({ ...InitialControlsState });
+  const [aceleration, setAceleration] = useState(1);
 
   function handleKeydownEvent(e: KeyboardEvent) {
     const isPressed = controls[e.code];
@@ -24,6 +27,7 @@ export default function useControls(/* props: IAppProps */): {
   function handleKeyupEvent(e: KeyboardEvent) {
     const isPressed = controls[e.code];
     if (isPressed?.state) {
+      if (e.code === "KeyW") setAceleration(1);
       const newState = { ...controls };
       newState[e.code].state = false;
 
@@ -40,5 +44,15 @@ export default function useControls(/* props: IAppProps */): {
     };
   });
 
-  return { controls, keys: Object.keys(controls) };
+  function incrementAceleration() {
+    if(aceleration >= 2) return;
+    setAceleration((prevState) => (((prevState / 1000) * 2) + prevState));
+  }
+
+  return {
+    controls,
+    keys: Object.keys(controls),
+    aceleration,
+    incrementAceleration,
+  };
 }

@@ -11,3 +11,13 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+.porfolio-card {
+  position: absolute;
+  top: 15vh;
+  left: 15vw;
+  width: 70vw;
+  height: 70vh;
+  background-color: rgba(192, 67, 192, 0.637);
+}

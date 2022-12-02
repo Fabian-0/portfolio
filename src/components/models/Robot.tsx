@@ -1,14 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useGLTF } from "@react-three/drei";
-import { SkinnedMesh } from "three";
-import { GLTFResult } from "../../types";
-import useRobot from "../hooks/useRobot";
+import useRobot from "../../hooks/useRobot";
+import Camera from "../threeBasics/Camera";
+import { BoxesContext } from "../../App";
 
 export default function Robot() {
-  const { nodes, materials } = useGLTF(
-    "./models/robot.glb"
-  ) as unknown as GLTFResult<SkinnedMesh>;
-  const { robot } = useRobot()
+  const { ctx } = useContext(BoxesContext);
+  const { robot, nodes, materials } = useRobot({ boxes: ctx.boxes });
 
   return (
     <group ref={robot} dispose={null} position={[0, 0, 12]}>
@@ -35,6 +33,7 @@ export default function Robot() {
             </group>
           </group>
         </group>
+        <Camera />
       </group>
     </group>
   );
