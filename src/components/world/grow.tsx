@@ -9,7 +9,7 @@ export default function Grow() {
       <planeBufferGeometry attach="geometry" args={[200, 200]} />
       <meshPhongMaterial
         attach="material"
-        color={0x212534}
+        color={0x252440}
       />
     </mesh>
   );

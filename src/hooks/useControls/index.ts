@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { InitialControlsState } from "../../constants/controlsHookState";
 import { ControlsInterface } from "./interfacesAndEnums";
 
+// Delete this comment before to commit
 // export interface IAppProps {
 // }
 
