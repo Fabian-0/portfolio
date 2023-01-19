@@ -14,7 +14,7 @@ export default function TopLeft(props: React.HTMLAttributes<HTMLOrSVGElement>) {
         <path
           d="m76.291 174.98 2.27-2.27 0.01796-43.349 3.7659-3.7659h29.819l2.427-2.427h18.934l0.39994-0.40514h-57.633z"
           fill="#f88a24"
-          stroke-width=".26458"
+          strokeWidth=".26458"
         />
       </g>
     </svg>

@@ -24,10 +24,10 @@ interface IBoxesCtxState {
 }
 const BoxesCtxState = {
   boxes: [],
-  isCardVisible: true,
-  cardName: "portfolio",
-  /* isCardVisible: false,
-  cardName: null, */
+ /*  isCardVisible: true,
+  cardName: "portfolio", */
+  isCardVisible: false,
+  cardName: null,
 };
 
 export const BoxesContext = createContext<IBoxesCtxState>({
@@ -35,11 +35,11 @@ export const BoxesContext = createContext<IBoxesCtxState>({
   ctx: BoxesCtxState,
 });
 
-const proyects: { [key: string]: () => JSX.Element } = { portfolio: Portfolio };
+// const proyects: { [key: string]: () => JSX.Element } = { portfolio: Portfolio };
 
 function App() {
   const [ctx, setCtx] = useState<IBoxesState>(BoxesCtxState);
-  const Component = proyects[ctx.cardName || ""];
+  // const Component = proyects[ctx.cardName || ""];
 
   return (
     <BoxesContext.Provider value={{ setCtx, ctx }}>
@@ -52,9 +52,9 @@ function App() {
         <CollitionsHandler />
       </Canvas>
 
-      {ctx.isCardVisible && Component && (
+      {ctx.isCardVisible && (
         <StyledCard>
-          <Component />
+          {/* <Component /> */}
         </StyledCard>
       )}
     </BoxesContext.Provider>
