@@ -24,10 +24,10 @@ interface IBoxesCtxState {
 }
 const BoxesCtxState = {
   boxes: [],
- /*  isCardVisible: true,
-  cardName: "portfolio", */
-  isCardVisible: false,
-  cardName: null,
+  isCardVisible: true,
+  cardName: "portfolio",
+  /* isCardVisible: false,
+  cardName: null, */
 };
 
 export const BoxesContext = createContext<IBoxesCtxState>({

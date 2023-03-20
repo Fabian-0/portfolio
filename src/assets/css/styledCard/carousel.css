@@ -1,0 +1,16 @@
+/* .card-carousel__icons::after,
+.card-carousel__icons::before {
+  content: "";
+  position: absolute;
+  display: block;
+  
+} */
+
+.card-carousel__icons {
+  position: absolute;
+  z-index: -1;
+}
+
+.card_carousel-images, .card_carousel-images > img {
+  width: 100%;
+}

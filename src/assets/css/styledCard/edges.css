@@ -6,8 +6,8 @@
 /* Top left edge */
 
 .card-child__top-left {
-  top: 0.75vh;
-  width: 13vw;
+  top: 0.75%;
+  width: 13%;
 }
 
 .card-child__top-left-0 {
@@ -21,13 +21,14 @@
 .card-child__top-right {
   top: 0;
   right: 0;
+  width: 100%;
 }
 
 .card-child__top-right-0 {
   position: absolute;
   top: -0;
-  left: -6.75vw;
-  width: 8vw;
+  right: -1.2%;
+  width: 8%;
   height: auto;
   max-height: 70vh;
 }
@@ -36,12 +37,10 @@
 /* Bottom right edge */
 
 .card-child__bottom-right {
-  position: absolute;
-  bottom: -1.1vw;
-  right: -1.1vw;
-  border: 1.2vw solid transparent;
-  border-left: 1.2vw solid var(--primary-orange);
-  transform: rotate(45deg);
+  width: 3%;
+  height: auto;
+  bottom: 0;
+  right: 0;
 }
 
 /* ------------------------------------------ */
@@ -61,3 +60,10 @@
 }
 
 /* ------------------------------------------ */
+
+@media (min-width: 1600px) {
+  .card-child__bottom-left {
+    width: 140px;
+    height: 140px;
+  }
+}
